@@ -1,29 +1,26 @@
-import { Component } from 'react'
-import { Card } from 'react-bootstrap'
-import CommentArea from './CommentArea'
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
-class SingleBook extends Component {
-  state = {
-    selected: false,
-  }
+class SingleBook extends React.Component {
 
-  render() {
-    return (
-      <Card
-        onClick={() => this.setState({ selected: !this.state.selected })}
-        style={{ border: this.state.selected ? '3px solid red' : 'none' }}
-      >
-        <Card.Img variant="top" src={this.props.book.img} />
-        <Card.Body>
-          <Card.Title style={{ color: 'black' }}>
-            {this.props.book.title}
-          </Card.Title>
-        </Card.Body>
-        {this.state.selected && <CommentArea book={this.props.book} />}
-      </Card>
-    )
-  }
+    state = {
+        selected: false
+    }
+
+    render () {
+        return (
+            <Card style={{border: this.state.selected ? '5px solid black' : 'none'}} 
+            onClick={() => this.setSate({selected: !this.state.selected})}>
+              <Card.Img variant="top" src={this.props.book.img} />
+              <Card.Body>
+                <Card.Title>{this.props.book.title}</Card.Title>
+                <Card.Text></Card.Text>
+                <Button variant="primary">£{this.props.book.price}</Button>
+              </Card.Body>
+            </Card>
+          );
+    }
 }
 
-export default SingleBook
-
+export default SingleBook;

@@ -1,42 +1,44 @@
-import { Component } from 'react'
-import SingleBook from './SingleBook'
-import { Col, Form, Row } from 'react-bootstrap'
+import React from 'react'
+import SingleBook from './SingleBook';
+import {Container, Col, Row, Form} from 'react-bootstrap';
 
-class BookList extends Component {
-  state = {
-    searchQuery: '',
-  }
 
-  render() {
-    return (
-      <>
-        <Row>
-          <Col>
-            <Form.Group>
-              <Form.Label>Search a book</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Search here"
-                value={this.state.searchQuery}
-                onChange={(e) => this.setState({ searchQuery: e.target.value })}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row>
-          {this.props.books
-            .filter((b) =>
-              b.title.toLowerCase().includes(this.state.searchQuery)
-            )
-            .map((b) => (
-              <Col xs={12} md={4} key={b.asin}>
-                <SingleBook book={b} />
-              </Col>
-            ))}
-        </Row>
-      </>
-    )
-  }
-}
 
-export default BookList
+class BookList extends React.Component {
+
+    state = {
+
+        query: ''
+
+    }
+
+    render() {
+        return (
+            <Container>
+                
+                <Row>
+                    <Form>
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Control type="email" placeholder="Search Bookstore"
+                        value={this.state.query}
+                        onChange={e => this.setState({query: e.target.value})} />
+                      </Form.Group>
+                    </Form>
+                </Row>
+
+
+                <Row>
+                    {
+                        this.props.book.filter(books => books.title.toLowerCase().includes(this.state.query)).map(books =>(
+                        <Col lg={4} md={6} sm={12}>
+                        <SingleBook book={books}/>
+                        </Col>
+                        ))
+                    };
+                </Row>
+            </Container>
+          );
+        };
+};
+
+export default BookList;
