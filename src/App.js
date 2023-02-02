@@ -7,7 +7,7 @@ import MyJumbotron from './components/MyJumbotron'
 import { Container } from 'react-bootstrap'
 import BookList from './components/BookList'
 
-import fantasy from './data/fantasy.json'
+import fantasy from './data/books/fantasy.json'
 
 function App() {
   return (
